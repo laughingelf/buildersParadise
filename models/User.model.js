@@ -3,10 +3,12 @@ const { model, Schema } = require('mongoose')
 const userSchema = new Schema(
     {
         username: String,
+        firstName: String,
+        lastName: String,
         email: String,
         password: String,
         craft: [String],
-        years: Number
+        years: String
     },
     {
         timestamps: true

@@ -1,0 +1,59 @@
+<h2>Update Profile</h2>
+
+<form action="/users/update-profile/{{_id}}" method="post">
+    <label> Username:
+        <input type="text" name="username" id="username" required value={{username}}>
+    </label>
+
+    {{#if firstName}}
+    <label>First Name:
+        <input type="text" name="firstName" id="firstName" required value={{firstName}}>
+    </label>
+    {{else}}
+    <label>First Name:
+        <input type="text" name="firstName" id="firstName" required>
+    </label>
+    {{/if}}
+
+
+    {{#if lastName}}
+    <label>Last Name:
+        <input type="text" name="lastName" id="lastName" required value={{lastName}}>
+    </label>
+    {{else}}
+    <label>Last Name:
+        <input type="text" name="lastName" id="lastName" required>
+    </label>
+    {{/if}}
+
+
+    <label>Email:
+        <input type="text" name="email" id="email" required value={{email}}>
+    </label>
+
+
+    {{#if craft}}
+    <label>Crafts:
+        <input type="text" name="craft" id="craft" required value={{craft}}>
+    </label>
+    {{else}}
+    <label>Crafts:
+        <input type="text" name="craft" id="craft" required>
+    </label>
+    {{/if}}
+
+
+
+    {{#if years}}
+    <label>Years in Craft:
+        <input type="number" name="years" id="years" required value={{years}}>
+    </label>
+    {{else}}
+    <label>Years in Craft:
+        <input type="number" name="years" id="years" required>
+    </label>
+    {{/if}}
+
+    <button type="submit">Save</button>
+
+</form>

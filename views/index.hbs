@@ -1,2 +1,25 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h2>Welcome to Builders Paradise</h2>
+
+
+{{#if posts}}
+
+{{#each posts}}
+<div>
+
+    <h4>{{title}}</h4>
+    <p>{{description}}</p>
+    <p>{{imageUrl}}</p>
+    <h5>Owner: {{owner.username}}</h5>
+
+    <hr>
+
+</div>
+{{/each}}
+
+
+{{else}}
+
+<h2>No Posts Yet</h2>
+
+
+{{/if}}

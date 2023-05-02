@@ -1,0 +1,31 @@
+<h2>User Home Page</h2>
+
+<a href="/users/update-profile/{{user._id}}">Update Profile</a>
+<a href="/post/new-post">Create Post</a>
+
+{{#if user.firstName}}
+<h2>Welcome {{user.firstName}}</h2>
+{{else}}
+<h3><a href="/users/update-profile/{{user._id}}">Please update your profile</a></h3>
+
+{{/if}}
+
+{{#if posts}}
+
+{{#each posts}}
+
+<h2>{{title}}</h2>
+<h4>{{description}}</h4>
+<br>
+<a href="/post/update-post/{{id}}">Edit</a>
+
+<hr>
+
+
+{{/each}}
+
+{{else}}
+
+<h2>No Posts</h2>
+
+{{/if}}

@@ -24,7 +24,7 @@ router.post('/login', isLoggedOut, (req, res, next) => {
             } else if (bcryptjs.compareSync(password, user.password)) {
                 req.session.user = user
                 console.log('the user is: ', user)
-                res.redirect('/', { loggedIn: req.session.loggedIn })
+                res.redirect('/')
             } else {
                 res.render('auth/login', { errorMessage: 'Incorrect Email/Password' })
             }
