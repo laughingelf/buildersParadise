@@ -17,7 +17,24 @@ const isLoggedOut = (req, res, next) => {
     next();
 };
 
+const isOwner = (req, res, next) => {
+
+    Comment.findById(req.params.id)
+        .then((user) => {
+            if (!req.session.user || user.toString() !== req.session.user._id) {
+                res.render('index.hbs', { errorMessage: "You are not authorized." })
+            } else {
+                next()
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+}
+
 module.exports = {
     isLoggedIn,
-    isLoggedOut
+    isLoggedOut,
+    isOwner
 };

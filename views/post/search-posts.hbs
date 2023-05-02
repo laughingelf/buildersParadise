@@ -1,0 +1,46 @@
+<h2>search results</h2>
+
+<div>
+    <h3>Builders</h3>
+
+    {{#if builderRes}}
+
+    {{#each builderRes}}
+
+    <h3><a href="/users/builder-profile/{{_id}}">{{username}}</a></h3>
+    <h4>{{firstName}}</h4>
+
+    {{/each}}
+
+    {{else}}
+
+    <h3>No Results</h3>
+
+    {{/if}}
+
+
+</div>
+
+
+
+<div>
+    <h3>Posts</h3>
+
+    {{#if postRes}}
+
+    {{#each postRes}}
+
+    <h3><a href="/post/post-details/{{id}}">{{title}}</a></h3>
+    <p>{{description}}</p>
+
+
+    {{/each}}
+
+    {{else}}
+
+    <h3>No Results</h3>
+
+    {{/if}}
+
+
+</div>

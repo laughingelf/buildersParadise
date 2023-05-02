@@ -1,1 +1,69 @@
 <h2>post details</h2>
+
+<h2>{{title}}</h2>
+<h4>{{description}}</h4>
+<p>{{imageUrl}}</p>
+<h4><a href="/users/builder-profile/{{owner._id}}">{{owner.username}}</a></h4>
+<br><br>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Comment
+</button>
+
+<hr>
+
+
+{{#if comments}}
+
+{{#each comments}}
+
+<form action="/" method="get">
+    <h5>{{comment}}</h5>
+    <p><a href="/users/builder-profile/{{username._id}}">@{{username.username}}</a></p>
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+<hr>
+{{/each}}
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/post/add-comment" method="post">
+                    <textarea name="comment" id="comment" cols="60" rows="10"></textarea>
+                    <input type="hidden" value="{{_id}}" name="id" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>

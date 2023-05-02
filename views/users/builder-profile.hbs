@@ -14,12 +14,14 @@
 
 </div>
 
-{{!-- {{#if posts}}
+{{#if posts}}
 
 {{#each posts}}
 
-<h2>{{title}}</h2>
+<h2><a href="/post/post-details/{{id}}">{{title}}</a></h2>
 <h4>{{description}}</h4>
+<br>
+<hr>
 
 
 {{/each}}
@@ -28,4 +30,4 @@
 
 <h2>No Posts</h2>
 
-{{/if}} --}}
+{{/if}}

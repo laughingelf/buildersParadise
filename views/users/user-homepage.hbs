@@ -8,14 +8,20 @@
 {{else}}
 <h3><a href="/users/update-profile/{{user._id}}">Please update your profile</a></h3>
 
+
+
+
 {{/if}}
+
+<h2>Your Builds</h2>
+<hr>
 
 {{#if posts}}
 
 {{#each posts}}
 
-<h2>{{title}}</h2>
-<h4>{{description}}</h4>
+<h4>{{title}}</h4>
+<h5>{{description}}</h5>
 <br>
 <a href="/post/update-post/{{id}}">Edit</a>
 
@@ -26,6 +32,6 @@
 
 {{else}}
 
-<h2>No Posts</h2>
+<h4>No Posts</h4>
 
 {{/if}}

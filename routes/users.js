@@ -3,7 +3,7 @@ var router = express.Router();
 
 const User = require('../models/User.model')
 const Post = require('../models/Post.model')
-const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
+const { isLoggedIn, isLoggedOut, isOwner } = require('../middleware/route-guard')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -58,7 +58,11 @@ router.get('/builder-profile/:id', isLoggedIn, (req, res, next) => {
   const { id } = req.params
   User.findById(id)
     .then((user) => {
-      res.render('users/builder-profile.hbs', user)
+      Post.find({ owner: user._id })
+        .then((posts) => {
+          posts = posts.reverse()
+          res.render('users/builder-profile.hbs', { user, posts })
+        })
     })
 })
 
