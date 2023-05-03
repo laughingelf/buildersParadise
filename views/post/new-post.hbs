@@ -1,6 +1,6 @@
 <h2>New Post</h2>
 
-<form action="/post/new-post" method="post">
+<form action="/post/new-post" method="post" enctype="multipart/form-data">
 
     <label>Title:
         <input type="text" name="title" id="title">
@@ -11,7 +11,7 @@
     </label>
 
     <label>Image Url:
-        <input type="text" name="imageUrl" id="imageUrl">
+        <input type="file" name="imageUrl" id="imageUrl">
     </label>
 
     <button type="submit">Share</button>

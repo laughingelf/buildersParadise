@@ -6,18 +6,20 @@ const { isLoggedIn, isLoggedOut, isOwner } = require('../middleware/route-guard'
 const Post = require('../models/Post.model')
 const User = require('../models/User.model')
 const Comment = require('../models/Comment.model')
+const fileUploader = require('../cloudinary.config.js')
 
 router.get('/new-post', isLoggedIn, (req, res, next) => {
     res.render('post/new-post.hbs')
 })
 
-router.post('/new-post', isLoggedIn, (req, res, next) => {
+router.post('/new-post', isLoggedIn, fileUploader.single('imageUrl'), (req, res, next) => {
     const { title, description, imageUrl } = req.body
+    console.log('this is the REQUREST FILE: ', req)
     Post.create(
         {
             title,
             description,
-            imageUrl,
+            imageUrl: req.file.path,
             owner: req.session.user._id
 
         })
@@ -99,6 +101,17 @@ router.post('/add-comment', isLoggedIn, (req, res, next) => {
                 .then(() => {
                     res.redirect(`/post/post-details/${id}`)
                 })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})
+
+router.get('/delete/:id', (req, res, next) => {
+    const { id } = req.params
+    Post.findByIdAndDelete(id)
+        .then((post) => {
+            res.redirect('/users/profile')
         })
         .catch((err) => {
             console.log(err)

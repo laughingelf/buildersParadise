@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+.main-page-picture {
+  height: 15%;
+  width: 15%;
+  margin-bottom: 1vh;
+}
+
+.post-details-picture {
+  height: auto;
+  width: 20%;
+  margin-bottom: 1vh;
+}
