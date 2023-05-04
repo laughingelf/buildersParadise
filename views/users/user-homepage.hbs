@@ -48,21 +48,22 @@
 {{#if posts}}
 
 {{#each posts}}
+<div class="builders-tile">
+    <img class="image" id="profile-post" src="{{imageUrl}}" alt="post-picture">
+    <h4>{{title}}</h4>
+    <h5>{{description}}</h5>
+    <br>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
+        Edit
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+        Delete
+    </button>
+</div>
 
-<h4>{{title}}</h4>
-<h5>{{description}}</h5>
-<br>
-{{!-- <a href="/post/update-post/{{id}}">Edit</a> <a href="/post/delete/{{id}}">Delete</a> --}}
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
-    Edit
-</button>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-    Delete
-</button>
 
-<hr>
-
-<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-style" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,7 +120,7 @@
 {{/if}}
 
 
-<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{!-- <div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -149,34 +150,101 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<!-- Modal -->
 
-<div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+
+<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+        <div class="modal-content w-75">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
+                <h5 class="modal-title" id="exampleModalLabel4">Update Profile</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="/post/new-post" method="post" enctype="multipart/form-data">
-                    <label>Title:
-                        <input type="text" name="username" id="username">
-                    </label>
-                    <label>Description:
-                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            <div class="modal-body p-4">
+                <form action="/users/update-profile/{{user._id}}" method="post">
+                    <!-- Name input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="name4">Username</label>
+                        <input type="text" id="username" name="username" class="form-control"
+                            value="{{user.username}}" />
+                    </div>
 
-                        <label>Upload Image:
-                            <input type="file" name="imageUrl" id="imageUrl">
-                        </label>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="name4">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control"
+                            value="{{user.firstName}}" />
+                    </div>
 
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="name4">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control"
+                            value="{{user.lastName}}" />
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" value="{{user.email}}" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="craft">Crafts</label>
+                        <input type="text" id="craft" name="craft" class="form-control" value="{{user.craft}}" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Years perfecting craft</label>
+                        <input type="number" id="years" name="years" class="form-control" value="{{user.years}}" />
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<!-- Modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+        <div class="modal-content w-75">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4">New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form action="/post/new-post" method="post" enctype="multipart/form-data">
+                    <!-- Name input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="title">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" />
+                    </div>
+
+                    <!-- textarea input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+                    </div>
+
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="imageUrl">Image</label><br>
+                        <input type="file" name="imageUrl" id="imageUrl">
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 
 
 <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

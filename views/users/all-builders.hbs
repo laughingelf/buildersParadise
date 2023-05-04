@@ -2,12 +2,12 @@
 
 {{#each builders}}
 
-<div>
+<div class="builders-tile">
     <div id="profile-pic-div">
 
         {{#if imageUrl}}
 
-        <img id="all-profile-pic" src="{{imageUrl}}" alt="profile-picture">
+        <img class="image" id="all-profile-pic" src="{{imageUrl}}" alt="profile-picture">
         <br>
 
         {{else}}
@@ -20,9 +20,6 @@
     </div>
     <h4><a href="/users/builder-profile/{{_id}}">{{username}}</a></h4>
     <p>{{craft}}</p>
-
-
-    <hr>
 
 
 </div>

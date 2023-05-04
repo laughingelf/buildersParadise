@@ -6,6 +6,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 </head>
 
@@ -19,12 +22,17 @@
       <a href="/auth/logout">Logout</a>
       <a href="/auth/signup">Sign Up</a>
     </div>
-    <br>
 
     <div>
-      <form action="/post/search-posts" method="get">
-        <input type="text" name="search" id="search">
-        <button type="submit">Search</button>
+      <form id="search-action" action="/post/search-posts" method="get">
+        <div id="search-form">
+          <input type="text" class="form-control search-form" id="search" name="search">
+          <button class="btn btn-primary search-form" type="submit">Search</button>
+
+        </div>
+
+
+
       </form>
     </div>
 

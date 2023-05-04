@@ -77,8 +77,8 @@ router.get('/search-posts', isLoggedIn, (req, res, next) => {
         .then((builderRes) => {
             Post.find({ $or: [{ title: { $regex: search } }, { description: { $regex: search } }] })
                 .then((postRes) => {
-                    console.log('builders RESULTS', builderRes)
-                    console.log('Posts RESULTS', postRes)
+                    // console.log('builders RESULTS', builderRes)
+                    // console.log('Posts RESULTS', postRes)
                     res.render('post/search-posts.hbs', { builderRes, postRes })
                 })
         })
@@ -120,14 +120,3 @@ router.get('/delete/:id', (req, res, next) => {
 
 
 module.exports = router;
-
-router.get('/delete/:id', (req, res, next) => {
-    const { id } = req.params
-    Activity.findByIdAndDelete(id)
-        .then((post) => {
-            res.redirect('/all-activities')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-})
