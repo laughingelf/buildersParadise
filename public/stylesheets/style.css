@@ -5,7 +5,10 @@ body {
 }
 
 h2,
-h3 {
+h3,
+h4,
+h5,
+p {
   font-family: 'Special Elite', cursive;
 }
 
