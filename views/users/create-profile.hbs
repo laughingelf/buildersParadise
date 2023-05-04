@@ -1,0 +1,44 @@
+<h2>create profile</h2>
+
+<form action="/users/create-profile/{{_id}}" method="post" enctype="multipart/form-data">
+
+
+    <label>Username:
+        <input type="text" name="username" id="username" value="{{username}}">
+    </label>
+    <br>
+    <br>
+    <label>First Name:
+        <input type="text" name="firstName" id="firstName" value="{{firstName}}">
+    </label>
+    <br>
+    <br>
+    <label>Last Name:
+        <input type="text" name="lastName" id="lastName" value="{{lastName}}">
+    </label>
+    <br>
+    <br>
+    <label>Email:
+        <input type="text" name="email" id="email" value="{{email}}">
+    </label>
+    <br>
+    <br>
+    <label>Craft:
+        <input type="text" name="craft" id="craft" value="{{craft}}">
+    </label>
+    <br>
+    <br>
+    <label>Years:
+        <input type="number" name="years" id="years" value="{{years}}">
+    </label>
+    <br>
+    <br>
+    <label>Profile Picture:
+        <input type="file" name="imageUrl" id="imageUrl">
+    </label>
+
+    <button type="submit">Create</button>
+
+
+
+</form>

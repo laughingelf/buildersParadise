@@ -3,9 +3,10 @@ var router = express.Router();
 
 const Post = require('../models/Post.model')
 const User = require('../models/User.model')
+const fileUploader = require('../cloudinary.config.js')
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', fileUploader.single('imageUrl'), (req, res, next) => {
   Post.find()
     .populate('owner')
     .then((posts) => {

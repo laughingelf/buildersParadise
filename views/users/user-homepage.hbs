@@ -1,12 +1,41 @@
 <h2>User Home Page</h2>
 
-<a href="/users/update-profile/{{user._id}}">Update Profile</a>
-<a href="/post/new-post">Create Post</a>
+<div id="profile-pic-div">
 
-{{#if user.firstName}}
+    {{#if user.imageUrl}}
+
+    <img id="profile-pic" src="{{user.imageUrl}}" alt="profile-picture">
+    <br>
+
+    {{else}}
+
+    <img id="profile-pic" src="/images/default.jpg" alt="pic">
+    <br>
+
+    {{/if}}
+
+</div>
+
+
+
+
+{{#if user.imageUrl}}
 <h2>Welcome {{user.firstName}}</h2>
+<br>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProfile">
+    Profile
+</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newPost">
+    Create Post
+</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteUser">
+    Delete Profile
+</button>
+<br>
+<br>
 {{else}}
-<h3><a href="/users/update-profile/{{user._id}}">Please update your profile</a></h3>
+{{!-- <h3><a href="/users/update-profile/{{user._id}}">Please update your profile</a></h3> --}}
+<a class="btn btn-primary" href="/users/create-profile/{{user._id}}">Create Profile</a>
 
 
 
@@ -23,9 +52,62 @@
 <h4>{{title}}</h4>
 <h5>{{description}}</h5>
 <br>
-<a href="/post/update-post/{{id}}">Edit</a> <a href="/post/delete/{{id}}">Delete</a>
+{{!-- <a href="/post/update-post/{{id}}">Edit</a> <a href="/post/delete/{{id}}">Delete</a> --}}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
+    Edit
+</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    Delete
+</button>
 
 <hr>
+
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/post/update-post/{{_id}}" method="post">
+
+                    <input type="text" name="title" id="title" value="{{title}}">
+
+                    <br>
+                    <br>
+
+                    <textarea name="description" id="description" cols="30" rows="10">{{description}}</textarea>
+
+                    {{!-- <br>
+                    <br>
+                    <input type="file" name="imageUrl" id="imageUrl"> --}}
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/post/delete/{{id}}" method="get">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {{/each}}
@@ -35,3 +117,81 @@
 <h4>No Posts</h4>
 
 {{/if}}
+
+
+<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/update-profile/{{user._id}}" method="post">
+                    <label>Username:
+                        <input type="text" name="username" id="username" value="{{user.username}}">
+                    </label>
+                    <label>First Name:
+                        <input type="text" name="firstName" id="firstName" value="{{user.firstName}}">
+                    </label>
+                    <label>Last Name:
+                        <input type="text" name="lastName" id="lastName" value="{{user.lastName}}">
+                    </label>
+                    <label>Email:
+                        <input type="text" name="email" id="email" value="{{user.email}}">
+                    </label>
+                    <label>Years:
+                        <input type="text" name="years" id="years" value="{{user.years}}">
+                    </label>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/post/new-post" method="post" enctype="multipart/form-data">
+                    <label>Title:
+                        <input type="text" name="username" id="username">
+                    </label>
+                    <label>Description:
+                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                        <label>Upload Image:
+                            <input type="file" name="imageUrl" id="imageUrl">
+                        </label>
+
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/delete-user/{{user._id}}" method="get">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,3 +18,13 @@ a {
   width: 20%;
   margin-bottom: 1vh;
 }
+
+#profile-pic {
+  height: 20vh;
+  width: auto;
+}
+
+#all-profile-pic {
+  height: 12vh;
+  width: auto;
+}

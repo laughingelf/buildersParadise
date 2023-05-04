@@ -120,3 +120,14 @@ router.get('/delete/:id', (req, res, next) => {
 
 
 module.exports = router;
+
+router.get('/delete/:id', (req, res, next) => {
+    const { id } = req.params
+    Activity.findByIdAndDelete(id)
+        .then((post) => {
+            res.redirect('/all-activities')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})

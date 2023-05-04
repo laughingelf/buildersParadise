@@ -3,9 +3,22 @@
 {{#each builders}}
 
 <div>
+    <div id="profile-pic-div">
 
+        {{#if imageUrl}}
+
+        <img id="all-profile-pic" src="{{imageUrl}}" alt="profile-picture">
+        <br>
+
+        {{else}}
+
+        <img id="all-profile-pic" src="/images/default.jpg" alt="pic">
+        <br>
+
+        {{/if}}
+
+    </div>
     <h4><a href="/users/builder-profile/{{_id}}">{{username}}</a></h4>
-    <h5>{{firstName}} {{lastName}}</h5>
     <p>{{craft}}</p>
 
 

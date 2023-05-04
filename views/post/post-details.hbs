@@ -19,11 +19,11 @@
 
 {{#each comments}}
 
-<form action="/" method="get">
-    <h5>{{comment}}</h5>
-    <p><a href="/users/builder-profile/{{username._id}}">@{{username.username}}</a></p>
-    <button type="submit" class="btn btn-primary">Delete</button>
-</form>
+
+<h5>{{comment}}</h5>
+<p><a href="/users/builder-profile/{{username._id}}">@{{username.username}}</a></p>
+
+
 <hr>
 {{/each}}
 
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-body">
                 <form action="/post/add-comment" method="post">
-                    <textarea name="comment" id="comment" cols="60" rows="10"></textarea>
+                    <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
                     <input type="hidden" value="{{_id}}" name="id" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Comment</button>

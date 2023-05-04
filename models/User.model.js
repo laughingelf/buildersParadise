@@ -8,7 +8,8 @@ const userSchema = new Schema(
         email: String,
         password: String,
         craft: [String],
-        years: String
+        years: String,
+        imageUrl: String
     },
     {
         timestamps: true
